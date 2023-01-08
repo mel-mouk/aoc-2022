@@ -52,10 +52,8 @@ const solve = (input) => {
 	const [crates, commands] = parseInput(input);
 
 	commands.forEach(cmd => {
-		for (let i = 0; i < cmd.amount; i++) {
-			let item = crates[cmd.from].pop();
-			crates[cmd.to].push(item);
-		}
+		let items = crates[cmd.from].splice(cmd.amount * -1);
+		crates[cmd.to].push(...items);
 	});
 
 	return crates.map(c => c.pop()).join("");
